@@ -50,10 +50,13 @@ game_stamps = generate_game()
 pprint(game_stamps)
 
 
-def get_score(game_stamps, offset=None):
+def get_score(game_stamps, offset):
     home = list()
     away = list()
-    for stamp in game_stamps:
+    if offset > len(game_stamps):
+        print(f"Captured Error: offset '{offset}' is bigger than array!")
+        return None, None
+    for stamp in game_stamps[offset-1:]:
         home.append(stamp["score"]["home"])
-        away.append(stamp["score"]["home"])
+        away.append(stamp["score"]["away"])
     return home, away
